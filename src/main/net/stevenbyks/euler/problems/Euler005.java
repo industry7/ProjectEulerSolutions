@@ -22,7 +22,13 @@ import java.util.Set;
 //        What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 public class Euler005 {
+
 	public static void main(String[] args) {
+		long result = Euler005.run();
+		System.out.println("The smallest positive number that is evenly divisible by all the numbers from 1 to 20 is: " + result);
+	}
+
+	public static long run() {
 
 		Prime prime = new Prime();
 		Map<Long, Long> lcm = new HashMap<Long, Long>();
@@ -38,6 +44,7 @@ public class Euler005 {
 			answer *= (long) Math.pow(l, lcm.get(l));
 		}
 
-		System.out.println("The smallest positive number that is evenly divisible by all the numbers from 1 to 20 is: " + answer);
+		return answer;
 	}
+
 }

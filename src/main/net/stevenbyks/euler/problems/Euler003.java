@@ -2,9 +2,6 @@ package net.stevenbyks.euler.problems;
 
 import net.stevenbyks.euler.utils.Prime;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  * User: sbyks
@@ -21,25 +18,30 @@ import java.util.List;
 //        What is the largest prime factor of the number 600851475143 ?
 
 public class Euler003 {
-    public static final Long data = 600851475143L;
+	public static final Long data = 600851475143L;
 
-    public static void main(String[] args) {
-        long target = data.longValue();
+	public static void main(String[] args) {
+		long result = Euler003.run();
+		System.out.println("The largest prime factor of " + data.longValue() + " is: " + result);
+	}
 
-        Prime prime = new Prime();
-        long currentPrime = prime.currentLargestPrime();
-        long largestPrime = 0;
+	public static long run() {
+		long target = data.longValue();
 
-        while(target > 1L) {
-            if(target % currentPrime == 0) {
-                target /= currentPrime;
-                largestPrime = currentPrime;
-            } else {
-                currentPrime = prime.findNextPrimeLargerThan(currentPrime);
-            }
-        }
+		Prime prime = new Prime();
+		long currentPrime = prime.currentLargestPrime();
+		long largestPrime = 0;
 
-        System.out.println("The largest prime factor of " + data.longValue() + " is: " + largestPrime);
-    }
+		while (target > 1L) {
+			if (target % currentPrime == 0) {
+				target /= currentPrime;
+				largestPrime = currentPrime;
+			} else {
+				currentPrime = prime.findNextPrimeLargerThan(currentPrime);
+			}
+		}
+
+		return largestPrime;
+	}
 
 }

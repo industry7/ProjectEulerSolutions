@@ -19,26 +19,30 @@ package net.stevenbyks.euler.problems;
 
 public class Euler002 {
 
-    public static void main(String[] args) {
-        Integer sum = 0;
-        Integer fibonacciN;
-        Integer fibonacciNminusOne = 2;
-        Integer fibonacciNminusTwo = 1;
+	public static void main(String[] args) {
+		Integer result = Euler002.run();
+		System.out.println("The sum of fibonacci numbers below four million is: " + result + ".");
+	}
 
-        fibonacciN = fibonacciNminusOne + fibonacciNminusTwo;
-        sum += fibonacciNminusOne;
+	public static Integer run() {
+		Integer sum = 0;
+		Integer fibonacciN;
+		Integer fibonacciNminusOne = 2;
+		Integer fibonacciNminusTwo = 1;
 
-        while(fibonacciN < 4000000) {
-            if(fibonacciN % 2 == 0) {
-                sum += fibonacciN;
-            }
-            fibonacciNminusTwo = fibonacciNminusOne;
-            fibonacciNminusOne = fibonacciN;
-            fibonacciN = fibonacciNminusOne + fibonacciNminusTwo;
-        }
+		fibonacciN = fibonacciNminusOne + fibonacciNminusTwo;
+		sum += fibonacciNminusOne;
 
-        System.out.println("The sum of fibonacci numbers below four million is: " + sum + ".");
+		while (fibonacciN < 4000000) {
+			if (fibonacciN % 2 == 0) {
+				sum += fibonacciN;
+			}
+			fibonacciNminusTwo = fibonacciNminusOne;
+			fibonacciNminusOne = fibonacciN;
+			fibonacciN = fibonacciNminusOne + fibonacciNminusTwo;
+		}
 
-    }
+		return sum;
+	}
 
 }
