@@ -1,5 +1,7 @@
 package net.stevenbyks.euler.problems;
 
+import net.stevenbyks.euler.utils.PrimeList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sbyks
@@ -23,15 +25,8 @@ public class Euler007 {
 	}
 
 	public static long run() {
-		long sumOfSquares = 0;
-		long squareOfSums = 0;
-		for(long l = 1; l <= 100; l++) {
-			sumOfSquares += (long) Math.pow(l, 2);
-			squareOfSums += l;
-		}
-		squareOfSums = (long) Math.pow(squareOfSums, 2);
-		long answer = squareOfSums - sumOfSquares;
-		return answer;
+		PrimeList primeList = new PrimeList();
+		return primeList.get(10000);
 	}
 
 }

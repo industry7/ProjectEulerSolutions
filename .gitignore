@@ -1,0 +1,9 @@
+# general stuff to ignore
+target/
+bin/
+libs/
+
+# IDEA specific stuff to ignore
+.idea/
+out/
+Project.Euler.iml

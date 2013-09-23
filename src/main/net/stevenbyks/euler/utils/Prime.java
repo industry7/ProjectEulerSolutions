@@ -16,50 +16,6 @@ public class Prime {
 		listOfPrimes = new PrimeList();
 	}
 
-	public long findNextPrime() {
-		long candidate = listOfPrimes.get(listOfPrimes.size() - 1) + 1;
-		Boolean isPrime = true;
-		while (true) {
-			for (long l : listOfPrimes) {
-				if (candidate % l == 0) {
-					isPrime = false;
-					break;
-				}
-			}
-			if (isPrime) {
-				listOfPrimes.add(candidate);
-				break;
-			}
-			isPrime = true;
-			++candidate;
-		}
-		return listOfPrimes.get(listOfPrimes.size() - 1);
-	}
-
-	public long findNextPrimeLargerThan(long target) {
-		long currentLargestPrime = listOfPrimes.get(listOfPrimes.size() - 1);
-		if (target >= currentLargestPrime) {
-			long newLargestPrime = findNextPrime();
-			while (newLargestPrime < target) {
-				newLargestPrime = findNextPrime();
-			}
-			return newLargestPrime;
-		} else {
-			long temp = listOfPrimes.get(0);
-			for (int n = 1; n < listOfPrimes.size(); ++n) {
-				if (temp > target) {
-					return temp;
-				}
-			}
-		}
-		//this should never happen
-		return 0L;
-	}
-
-	public long currentLargestPrime() {
-		return listOfPrimes.get(listOfPrimes.size() - 1);
-	}
-
 	public Map<Long, Long> primeFactors(long target) {
 		Map<Long, Long> primeFactors = new HashMap<Long, Long>();
 		if (target <= 1) {
@@ -80,9 +36,6 @@ public class Prime {
 					primeFactors.put(currentPrime, 1L);
 				}
 			} else {
-				if (!iter.hasNext()) {
-					findNextPrimeLargerThan(currentPrime);
-				}
 				currentPrime = iter.next();
 			}
 
@@ -116,6 +69,27 @@ public class Prime {
 		}
 
 		return lcm;
+	}
+
+	public List<Long> sieve(int findAllPrimesBelowThisNumber) {
+		// plus 1 for index offset, plus another 1 for the stopping condiiton
+		byte[] sieve = new byte[findAllPrimesBelowThisNumber+2];
+		sieve[0] = 1;
+		sieve[1] = 1;
+		List<Long> list = new ArrayList<Long>();
+		int currentPrime = 2;
+		while(currentPrime < findAllPrimesBelowThisNumber) {
+			//System.out.println(currentPrime);
+			list.add( (long) currentPrime );
+			for(int i = currentPrime*2; i < findAllPrimesBelowThisNumber; i+=currentPrime) {
+				sieve[i] = 1;
+			}
+			++currentPrime;
+			while(sieve[currentPrime] == 1) {
+				++currentPrime;
+			}
+		}
+		return list;
 	}
 
 }

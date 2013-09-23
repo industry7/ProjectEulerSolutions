@@ -1,6 +1,8 @@
 package net.stevenbyks.euler.problems;
 
-import net.stevenbyks.euler.utils.Prime;
+import net.stevenbyks.euler.utils.PrimeList;
+
+import java.util.Iterator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,8 +30,9 @@ public class Euler003 {
 	public static long run() {
 		long target = data.longValue();
 
-		Prime prime = new Prime();
-		long currentPrime = prime.currentLargestPrime();
+		PrimeList primeList = new PrimeList();
+		Iterator<Long> primeIterator = primeList.iterator();
+		long currentPrime = primeIterator.next();
 		long largestPrime = 0;
 
 		while (target > 1L) {
@@ -37,7 +40,7 @@ public class Euler003 {
 				target /= currentPrime;
 				largestPrime = currentPrime;
 			} else {
-				currentPrime = prime.findNextPrimeLargerThan(currentPrime);
+				currentPrime = primeIterator.next();
 			}
 		}
 
